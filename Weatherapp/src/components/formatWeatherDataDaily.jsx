@@ -14,24 +14,25 @@ export const formatWeatherDataDaily =(data) => {
         }
     });
     console.log(dataDaily);
-    return dataDaily;
-
-//     // french day
-//     const frenchDays = [
-//         "Jeudi",
-//         "Vendredi",
-//         "Samedi",
-//         "Dimanche",
-//         "Lundi",
-//         "Mardi",
-//         "Mercredi",
-//      ];
     
-//     dataDaily.forEach((data) => {
-//         const date = new Date(data.time);
-//         const dayIndex = date.getDay();// 0 à 6 
-//         data.jour = frenchDays[dayIndex];
-//     });
-//     console.log (dataDaily);
+
+     // french day
+    const frenchDays = [
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche",
+     ];
+    
+    dataDaily.forEach((data) => {
+        const date = new Date(data.time);
+        const dayIndex = date.getDay();// 0 à 6 
+        data.jour = frenchDays[dayIndex];
+    });
+    console.log (dataDaily);
+    return dataDaily;
  };
 

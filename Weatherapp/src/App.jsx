@@ -1,6 +1,8 @@
 import './App.css';
 import {useEffect, useState,useCallback} from 'react';
 import { formatWeatherDataDaily } from './components/formatWeatherDataDaily';
+import WeekDay from './components/WeekDay';
+import Today from './components/Today';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,9 +23,9 @@ function App() {
         setError(true);
       } else {
 
-        //formated daily data
+        //formatted daily data
         const formattedDailyData= formatWeatherDataDaily(data.daily);
-        setWeatherData ({formattedDailyData})
+        setWeatherData (formattedDailyData)
 
         //unités
         setWeatherUnits({
@@ -45,7 +47,7 @@ function App() {
     getGeolocalisation();
 
     fetchWeather (
-      `https://api.open-meteo.com/v1/forecast?latitude=${geoLoc.latitude}longitude=${geoLoc.longitude}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max&timezone=Europe%2FLondon`
+      `https://api.open-meteo.com/v1/forecast?latitude=${geoLoc.latitude}&longitude=${geoLoc.longitude}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max&timezone=Europe%2FLondon`
       ).then (()=> setIsLoading(false));
     },[fetchWeather, geoLoc.latitude, geoLoc.longitude]);
     
@@ -64,7 +66,38 @@ function App() {
     ); 
   };
 
-  return <h2 className="bg-slate-600 text-xl text-white"> TEST</h2>;
+  // si chargement
+  if (isLoading) {
+    return (
+    <div className='min-h-screen h-max bg'>
+      <p> Chargement...</p>
+    </div>);
+  }
+  
+  // si erreur
+  if (error) {
+    return (
+    <div>
+      <p> Une erreur est survenue...</p>
+    </div>
+    );
+  }
+
+  return <div className="bg-slate-600 text-xl text-white">
+    <div>
+      <Today data={weatherData[0]} weatherUnits = {weatherUnits} />
+      <div> 
+        {weatherData && 
+          weatherData
+            .slice (1, weatherData.length)
+            .map ((data, index) => ( 
+              <WeekDay key={index} data={data} weatherUnits = {weatherUnits}/>)
+            )}
+
+       
+      </div>
+    </div>
+  </div>;
   
 };
 
