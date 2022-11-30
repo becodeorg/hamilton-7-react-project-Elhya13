@@ -15,9 +15,22 @@ export const getEmojis =(temperature, precipitation, windspeed) => {
     } else {
         weather +=emojis.cloud;
     } 
+    // switch(precipitation)
+    // {
+
+    //     case "monday":
+    //         //code
+    //         break;
+    //     case 1:
+    //     case 2:
+    //         //code
+    //         break;
+    //     default:
+    // }
     
     if (windspeed >= 25) {
         weather +=emojis.wind;
     }
 return weather;     
 };
+

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getEmojis } from './getEmojis';
+import axios from "axios";
+
 
 const WeekDay = ({data, weatherUnits}) => {
   const [weatherEmojis, setWeatherEmojis] = useState("");

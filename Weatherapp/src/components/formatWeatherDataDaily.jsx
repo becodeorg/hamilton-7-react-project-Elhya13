@@ -9,22 +9,22 @@ export const formatWeatherDataDaily =(data) => {
                 dataDaily.push ({});
             }
             const dayValue = data[key][i];
-            //console.log (dayValue);
+            console.log (dayValue);
             dataDaily [i][key] = dayValue;
         }
     });
-    console.log(dataDaily);
+     console.log(dataDaily);
     
 
      // french day
     const frenchDays = [
+        "Dimanche",
         "Lundi",
         "Mardi",
         "Mercredi",
         "Jeudi",
         "Vendredi",
         "Samedi",
-        "Dimanche",
      ];
     
     dataDaily.forEach((data) => {

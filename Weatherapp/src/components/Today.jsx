@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { emojis } from './emojis';
 import { formatDateToHoursMinutes } from './formatDateToHoursMinutes';
 import { getEmojis } from './getEmojis';
+import axios from "axios";
 
 const Today = ({data, weatherUnits}) => {
   const [weatherEmojis, setWeatherEmojis] = useState("");
